@@ -12,6 +12,13 @@ A 2-billion parameter language model specialized for Python programming tasks. L
 - **Ollama Compatible**: Easy deployment with Ollama for local inference
 - **Comprehensive Toolchain**: Complete pipeline from data collection to deployment
 
+## 🔧 Quick Setup
+
+```bash
+# Initialize development environment
+./scripts/setup.sh
+```
+
 ## 📋 Quick Start
 
 ### Prerequisites
@@ -96,16 +103,27 @@ Improve code structure and readability:
 
 Collect training data from various Python sources:
 
+**Data Sources:**
+- **Python Documentation**: Official Python docs, tutorials, and API references
+- **GitHub Repositories**: High-quality Python repositories (300+ stars by default)
+- **Stack Overflow**: Python-related Q&A with high vote counts (10+ votes by default)
+- **PyPI Packages**: Documentation and examples from popular Python packages
+
 ```bash
-# Collect all data sources
+# Comprehensive data collection with monitoring
+./scripts/run_data_collection.py \\
+    --output-dir data/raw \\
+    --config configs/data_config.json
+
+# Collect all data sources (alternative)
 python data_collection/data_collector.py \\
     --output-dir data/raw \\
     --config configs/data_collection.json
 
 # Or collect specific sources
-python data_collection/data_collector.py --python-docs-only
-python data_collection/data_collector.py --github-only
-python data_collection/data_collector.py --stackoverflow-only
+./scripts/run_data_collection.py --python-docs-only
+./scripts/run_data_collection.py --github-only --max-items 100
+./scripts/run_data_collection.py --stackoverflow-only
 ```
 
 ### 2. Data Preprocessing
@@ -125,7 +143,15 @@ python preprocessing/process_data.py \\
 Train the model with your data:
 
 ```bash
-# Single GPU training
+# Comprehensive training with monitoring and validation
+./scripts/run_training.py \\
+    --train-data data/processed \\
+    --model-config configs/model_config.json \\
+    --training-config configs/training_config.json \\
+    --output-dir outputs/limellm-2b \\
+    --auto-eval
+
+# Single GPU training (alternative)
 python training/train.py \\
     --train-data data/processed \\
     --model-config configs/model_config.json \\
@@ -133,12 +159,10 @@ python training/train.py \\
     --output-dir outputs/limellm-2b
 
 # Multi-GPU training with DeepSpeed
-deepspeed training/train.py \\
+./scripts/run_training.py \\
     --train-data data/processed \\
-    --model-config configs/model_config.json \\
-    --training-config configs/training_config.json \\
-    --output-dir outputs/limellm-2b \\
-    --deepspeed configs/deepspeed_config.json
+    --deepspeed \\
+    --output-dir outputs/limellm-2b
 ```
 
 ### 4. Evaluation
@@ -162,6 +186,15 @@ python evaluation/generate_report.py \\
 Convert your trained model for deployment:
 
 ```bash
+# Advanced export with custom options
+./scripts/export_to_ollama.py \\
+    --model-path outputs/limellm-2b \\
+    --output-dir ollama-models/limellm-2b \\
+    --quantization q4_0 \\
+    --model-name limellm-2b \\
+    --system-prompt "You are a specialized Python coding assistant."
+
+# Basic export (alternative)
 python export/ollama_converter.py \\
     --model-path outputs/limellm-2b \\
     --output-dir ollama-models/limellm-2b \\
@@ -233,6 +266,10 @@ limellm/
 ├── export/                 # Model export utilities (Ollama, GGUF)
 ├── configs/                # Configuration files
 ├── scripts/                # Utility scripts
+│   ├── setup.sh            # Environment setup
+│   ├── run_data_collection.py  # Comprehensive data collection
+│   ├── run_training.py     # Training with monitoring
+│   └── export_to_ollama.py # Advanced Ollama export
 └── docs/                   # Documentation
 ```
 
