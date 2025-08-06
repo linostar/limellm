@@ -295,31 +295,35 @@ flake8 .
 mypy .
 ```
 
-## 📚 Documentation
-
-- [Training Guide](docs/training.md) - Detailed training instructions
-- [Evaluation Guide](docs/evaluation.md) - How to evaluate models
-- [Deployment Guide](docs/deployment.md) - Deployment options and configurations
-- [API Reference](docs/api.md) - Code API documentation
-- [Contributing](CONTRIBUTING.md) - How to contribute to the project
-
 ## 🤝 Contributing
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions to LimeLLM! Whether you're fixing bugs, adding features, improving documentation, or expanding the training data sources, your help is appreciated.
 
-### Development Setup
+### Quick Start for Contributors
 
 ```bash
 # Clone and setup development environment
-git clone https://github.com/your-username/limellm.git
+git clone https://github.com/linostar/limellm.git
 cd limellm
 
-# Install development dependencies
-pip install -r requirements-dev.txt
+# Initialize development environment
+./scripts/setup.sh
 
-# Install pre-commit hooks
-pre-commit install
+# This script will:
+# - Create virtual environment
+# - Install all dependencies
+# - Set up configuration files
+# - Configure git hooks
 ```
+
+### Ways to Contribute
+
+- **🐛 Bug Fixes**: Fix issues in training, data collection, or model export
+- **🚀 Features**: Add new data sources, model architectures, or evaluation benchmarks
+- **📚 Documentation**: Improve guides, add examples, or fix typos
+- **🧹 Code Quality**: Refactor code, add tests, or improve performance
+- **📊 Data**: Contribute high-quality Python code datasets
+
 
 ## 📄 License
 
