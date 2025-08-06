@@ -59,7 +59,7 @@ Generate Python functions, classes, and complete programs:
 class BinarySearchTree:
     def __init__(self):
         self.root = None
-    
+
     def insert(self, val):
         if not self.root:
             self.root = TreeNode(val)
@@ -74,7 +74,7 @@ Identify and fix issues in existing code:
 ```python
 # Prompt: "Fix this buggy function"
 # Input: def divide(a, b): return a / b
-# Output: 
+# Output:
 def divide(a, b):
     if b == 0:
         raise ValueError("Division by zero is not allowed")
@@ -206,20 +206,7 @@ Set training parameters in `configs/training_config.json`:
 }
 ```
 
-## 📊 Model Performance
-
-### Benchmarks
-
-| Metric | LimeLLM-2B | GPT-3.5-Turbo | CodeT5-Base |
-|--------|------------|---------------|-------------|
-| Human-Eval Pass@1 | 35.2% | 48.1% | 28.4% |
-| Code Completion | 72.8% | 81.2% | 65.3% |
-| Bug Detection | 68.4% | 74.6% | 61.2% |
-| Refactoring Quality | 7.2/10 | 8.1/10 | 6.8/10 |
-
-*Results on Python-specific evaluation tasks*
-
-### Hardware Requirements
+## 📊 Hardware Requirements
 
 #### Training
 - **Minimum**: 1x RTX 3090 (24GB VRAM)
@@ -299,7 +286,7 @@ pre-commit install
 
 ## 📄 License
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU GPL-3.0 license - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -307,34 +294,3 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - [DeepSpeed](https://github.com/microsoft/DeepSpeed) for distributed training capabilities
 - [Ollama](https://github.com/jmorganca/ollama) for local model deployment
 - [Human-Eval](https://github.com/openai/human-eval) for code generation benchmarking
-
-## 📈 Roadmap
-
-- [ ] **v0.1.0**: Initial release with 2B parameter model
-- [ ] **v0.2.0**: Support for additional programming languages
-- [ ] **v0.3.0**: Code explanation and documentation generation
-- [ ] **v0.4.0**: Integration with popular IDEs and editors
-- [ ] **v1.0.0**: Production-ready release with optimizations
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/your-username/limellm/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/limellm/discussions)
-- **Email**: limellm@example.com
-
-## ⭐ Citation
-
-If you use LimeLLM in your research, please cite:
-
-```bibtex
-@misc{limellm2024,
-  title={LimeLLM: A Specialized Language Model for Python Programming},
-  author={Your Name},
-  year={2024},
-  url={https://github.com/your-username/limellm}
-}
-```
-
----
-
-Made with ❤️ for the Python programming community
